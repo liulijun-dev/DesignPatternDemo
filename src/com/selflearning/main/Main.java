@@ -1,6 +1,8 @@
 package com.selflearning.main;
 
 import com.selflearning.design.pattern.*;
+import com.selflearning.design.pattern.state.LoginContext;
+import com.selflearning.design.pattern.state.LogoutState;
 import com.selflearning.design.pattern.strategy.StrategyContext;
 import com.selflearning.design.pattern.strategy.OperationAdd;
 import com.selflearning.design.pattern.strategy.OperationMultiply;
@@ -34,5 +36,11 @@ public class Main {
 
         strategyContext = new StrategyContext(new OperationMultiply());
         System.out.println("10 * 5 = " + strategyContext.executeStrategy(10, 5));
+
+        System.out.println("--------------State:---------------");
+        LoginContext loginContext = new LoginContext();
+        loginContext.setUserState(new LogoutState());
+        loginContext.forward();
+        loginContext.comment();
     }
 }
