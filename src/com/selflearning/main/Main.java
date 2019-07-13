@@ -1,9 +1,10 @@
 package com.selflearning.main;
 
-import com.selflearning.design.pattern.DynamicProxy;
-import com.selflearning.design.pattern.Facade;
-import com.selflearning.design.pattern.MethodAroundExecute;
-import com.selflearning.design.pattern.StaticProxy;
+import com.selflearning.design.pattern.*;
+import com.selflearning.design.pattern.strategy.Context;
+import com.selflearning.design.pattern.strategy.OperationAdd;
+import com.selflearning.design.pattern.strategy.OperationMultiply;
+import com.selflearning.design.pattern.strategy.OperationSubstract;
 
 public class Main {
 
@@ -23,5 +24,15 @@ public class Main {
         System.out.println("--------------DynamicProxy:---------------");
         DynamicProxy dynamicProxy = new DynamicProxy();
         dynamicProxy.buyHouse();
+
+        System.out.println("--------------Strategy:---------------");
+        Context context = new Context(new OperationAdd());
+        System.out.println("10 + 5 = " + context.executeStrategy(10, 5));
+
+        context = new Context(new OperationSubstract());
+        System.out.println("10 - 5 = " + context.executeStrategy(10, 5));
+
+        context = new Context(new OperationMultiply());
+        System.out.println("10 * 5 = " + context.executeStrategy(10, 5));
     }
 }
